@@ -7,6 +7,10 @@ public class Pokemon {
     public String type;
     public String description;
 
+
+
+    
+
     public Pokemon(int number, String name, String category, String type, String description) {
         this.number = number;
         this.name = name;
