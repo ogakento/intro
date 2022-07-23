@@ -17,7 +17,7 @@ class OldMaid2{
             System.out.println("所持金: "+money);
             int bet;
             do {
-                System.out.print("掛け金: ");
+                System.out.print("掛け金: ");1000
                 bet = sc.nextInt();
             } while(bet > money);
             money -= bet;
