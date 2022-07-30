@@ -4,15 +4,13 @@ public class PrintDifImageHtml {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        int a = 0;
 
         System.out.print("<HTML>\n");
         System.out.print("<HEAD><TITLE>Single Image Page </TITLE></HEAD>\n");
         System.out.print("<BODY>\n");
 
         for (int i = 0; i < n; i++) {
-            a = i;
-        System.out.print("<IMG SRC=\"" + a + ".jpg\"><BR>\n");
+        System.out.print("<IMG SRC=\"" + i + ".jpg\"><BR>\n");
         }
 
         System.out.print("</BODY>\n");
