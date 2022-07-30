@@ -1,28 +1,22 @@
 import java.util.Scanner;
-import java.util.Collections;
-import java.util.ArrayList;
 
 public class PrintDifImageHtml {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i <= 10; i++) {
-            list.add(i);
-        }
-
-        int a = sc.nextInt();
-
-        for (int j = 0; j < a; j++) {
-            
-
-        }
+        int n = sc.nextInt();
+        int a = 0;
 
         System.out.print("<HTML>\n");
         System.out.print("<HEAD><TITLE>Single Image Page </TITLE></HEAD>\n");
         System.out.print("<BODY>\n");
-        System.out.print("<IMG SRC=\"1.jpg\"><BR>\n");
+
+        for (int i = 0; i < n; i++) {
+            a = i;
+        System.out.print("<IMG SRC=\"" + a + ".jpg\"><BR>\n");
+        }
+
         System.out.print("</BODY>\n");
         System.out.print("</HTML>\n");
-        System.err.print("処理は終了しました");
+        System.err.print(n + "枚の画像を表示しました");
     } 
 }
