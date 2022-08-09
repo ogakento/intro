@@ -11,16 +11,16 @@ public class Love {
             System.out.print(dodosuko[rnd_num]);
             if (rnd_num == 0) {
                 if (a == 0 && b == 0) {
-                    a = 1;
+                    a += 1;
                     continue;
                 } else if (a == 1 && b == 3) {
-                    a = 2;
+                    a += 1;
                     continue;
                 } else if (a == 2 && b == 6) {
-                    a = 3;
+                    a += 1;
                     continue;
                 } else {
-                    a = 0;
+                    a = 1;
                     b = 0;
                     continue;
                 }
