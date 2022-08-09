@@ -57,19 +57,19 @@ public class Love {
                     }
                 } else if (a == 3) {
                      if (b == 6) {
-                            b += 1;
-                            continue;
-                        } else if (b == 7) {                               
-                            b += 1;
-                            continue;
-                        } else if (b == 8) {
-                            break;
-                        } else {
-                            a = 0;
-                            b = 0;
-                            continue;
-                        }
+                         b += 1;
+                        continue;
+                    } else if (b == 7) {                               
+                        b += 1;
+                        continue;
+                    } else if (b == 8) {
+                        break;
+                    } else {
+                        a = 0;
+                        b = 0;
+                        continue;
                     }
+                }
             }
         } while(true);
         System.out.println("ラブ注入～");
