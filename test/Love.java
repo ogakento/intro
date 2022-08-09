@@ -3,7 +3,7 @@ import java.util.Random;
 public class Love {
     static public void main(String args[]) {
         String[] dodosuko = { "ドド", "スコ" };
-        Random rnd = new Random(); 
+        Random rnd = new Random();
         int a = 0;
         int b = 0;
         do {
@@ -23,7 +23,7 @@ public class Love {
                     a = 0;
                     b = 0;
                     continue;
-                } 
+                }
             } else if (rnd_num == 1) {
                 if (a == 1) {
                     if (b == 0) {
@@ -41,7 +41,7 @@ public class Love {
                         continue;
                     }
                 } else if (a == 2) {
-                     if (b == 3) {
+                    if (b == 3) {
                         b += 1;
                         continue;
                     } else if (b == 4) {
@@ -53,13 +53,13 @@ public class Love {
                     } else {
                         a = 0;
                         b = 0;
-                        continue;                        
+                        continue;
                     }
                 } else if (a == 3) {
-                     if (b == 6) {
-                         b += 1;
+                    if (b == 6) {
+                        b += 1;
                         continue;
-                    } else if (b == 7) {                               
+                    } else if (b == 7) {
                         b += 1;
                         continue;
                     } else if (b == 8) {
@@ -71,7 +71,7 @@ public class Love {
                     }
                 }
             }
-        } while(true);
+        } while (true);
         System.out.println("ラブ注入～");
     }
 }
