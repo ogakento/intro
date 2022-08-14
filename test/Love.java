@@ -4,69 +4,69 @@ public class Love {
     static public void main(String args[]) {
         String[] dodosuko = { "ドド", "スコ" };
         Random rnd = new Random();
-        int a = 0;
-        int b = 0;
+        int dodo = 0;
+        int suko = 0;
         do {
             int rnd_num = rnd.nextInt(2);
             System.out.print(dodosuko[rnd_num]);
             if (rnd_num == 0) {
-                if (a == 0 && b == 0) {
-                    a += 1;
+                if (dodo == 0 && suko == 0) {
+                    dodo += 1;
                     continue;
-                } else if (a == 1 && b == 3) {
-                    a += 1;
+                } else if (dodo == 1 && suko == 3) {
+                    dodo += 1;
                     continue;
-                } else if (a == 2 && b == 6) {
-                    a += 1;
+                } else if (dodo == 2 && suko == 6) {
+                    dodo += 1;
                     continue;
                 } else {
-                    a = 1;
-                    b = 0;
+                    dodo = 1;
+                    suko = 0;
                     continue;
                 }
             } else if (rnd_num == 1) {
-                if (a == 1) {
-                    if (b == 0) {
-                        b += 1;
+                if (dodo == 1) {
+                    if (suko == 0) {
+                        suko += 1;
                         continue;
-                    } else if (b == 1) {
-                        b += 1;
+                    } else if (suko == 1) {
+                        suko += 1;
                         continue;
-                    } else if (b == 2) {
-                        b += 1;
-                        continue;
-                    } else {
-                        a = 0;
-                        b = 0;
-                        continue;
-                    }
-                } else if (a == 2) {
-                    if (b == 3) {
-                        b += 1;
-                        continue;
-                    } else if (b == 4) {
-                        b += 1;
-                        continue;
-                    } else if (b == 5) {
-                        b += 1;
+                    } else if (suko == 2) {
+                        suko += 1;
                         continue;
                     } else {
-                        a = 0;
-                        b = 0;
+                        dodo = 0;
+                        suko = 0;
                         continue;
                     }
-                } else if (a == 3) {
-                    if (b == 6) {
-                        b += 1;
+                } else if (dodo == 2) {
+                    if (suko == 3) {
+                        suko += 1;
                         continue;
-                    } else if (b == 7) {
-                        b += 1;
+                    } else if (suko == 4) {
+                        suko += 1;
                         continue;
-                    } else if (b == 8) {
+                    } else if (suko == 5) {
+                        suko += 1;
+                        continue;
+                    } else {
+                        dodo = 0;
+                        suko = 0;
+                        continue;
+                    }
+                } else if (dodo == 3) {
+                    if (suko == 6) {
+                        suko += 1;
+                        continue;
+                    } else if (suko == 7) {
+                        suko += 1;
+                        continue;
+                    } else if (suko == 8) {
                         break;
                     } else {
-                        a = 0;
-                        b = 0;
+                        dodo = 0;
+                        suko = 0;
                         continue;
                     }
                 }
