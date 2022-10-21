@@ -7,8 +7,8 @@ public class B {
         long B = sc.nextLong();
         long C = sc.nextLong();
         long D = sc.nextLong();
-        if (A <= B && C <= D && 0 <= A && 0 <= C && B <= 1000000000000000000L && D <= 1000000000000000000L) {
-            if (B >= C && A >= D) {
+        if (A <= B || C <= D || 0 <= A || 0 <= C || B <= 1000000000000000000L || D <= 1000000000000000000L) {
+            if (B <= C) {
                 System.out.print("Yes");
                 
             } else {
