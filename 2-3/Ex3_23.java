@@ -20,7 +20,7 @@ public class Ex3_23 {
             count10000++;
             change = change - 10000;
         }
-        System.out.print("    " + count10000 + " x 10000 yen coin\n");
+        System.out.print("    " + count10000 + " x 10000 yen bill\n");
         // for 10000 yen end
 
         // for 5000 yen start
@@ -29,7 +29,7 @@ public class Ex3_23 {
             count5000++;
             change = change - 5000;
         }
-        System.out.print("    " + count5000 + " x 5000 yen coin\n");
+        System.out.print("    " + count5000 + " x 5000 yen bill\n");
         // for 5000 yen end
 
         // for 1000 yen start
@@ -38,7 +38,7 @@ public class Ex3_23 {
             count1000++;
             change = change - 1000;
         }
-        System.out.print("    " + count1000 + " x 1000 yen coin\n");
+        System.out.print("    " + count1000 + " x 1000 yen bill\n");
         // for 1000 yen end
 
         // for 500 yen start

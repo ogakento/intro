@@ -12,7 +12,7 @@ public class DoubleQuadraticFunctionArea {
         double truey1area = 0.0;
         double truey2area = 0.0;
         double truearea = 0.0;
-        double delta = 0.0001;
+        double delta = 0.0001; //分解能
         int r = 1;
         int lastR;
         Scanner sc = new Scanner(System.in);

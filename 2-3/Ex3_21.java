@@ -8,7 +8,7 @@ public class Ex3_21 {
         total = sc.nextInt();
         System.out.print("payment: ");
         payment = sc.nextInt();
-        change = total - payment;
+        change = payment - total;
 
         System.out.print("change: " + change + "\n");
     }
