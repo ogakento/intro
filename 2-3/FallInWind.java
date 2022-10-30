@@ -1,6 +1,8 @@
+import java.util.Scanner;
 
 public class FallInWind {
     public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
         double x, y, x_speed, y_speed, x_initial_speed, x_wind_speed1;
         double r;
         double g;
@@ -9,7 +11,10 @@ public class FallInWind {
         x = 0;
         y = 100000;
         x_initial_speed = 800;
-        x_wind_speed1 = 200;
+
+        System.err.print("Wind speed = ");
+        x_wind_speed1 = sc.nextDouble();
+        
         x_speed = x_initial_speed;
         y_speed = 0;
         r = 100000;
@@ -25,5 +30,6 @@ public class FallInWind {
             y += y_speed / r;
         }
         System.out.print("estimated distance = " + x + "\n");
+        System.out.println("estimated distance is approximately " + (((int)x)/100)*100 + "[m]");
     }
 }
