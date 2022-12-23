@@ -1,6 +1,10 @@
 import java.io.BufferedReader;
 import java.io.File;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 class jitugii4 {
 	public static void main(String[] args){

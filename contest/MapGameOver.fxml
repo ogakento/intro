@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.input.* ?>
+
+<VBox fx:controller="GameOverController" xmlns:fx="http://javafx.com/fxml">
+  <children>
+	        <Label text="GameOver..." />
+		<Button onAction="#onGameOverAction" text="迷路に戻る">
+		</Button>
+
+  </children>
+</VBox>

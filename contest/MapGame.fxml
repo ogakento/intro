@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.input.* ?>
+
+<VBox fx:controller="MapGameController" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/11" onKeyPressed="#keyAction">
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+  </padding>
+  
+  <children>
+    <HBox prefHeight="50">
+      <children>
+			<Button text="func1" prefWidth="100" onAction="#func1ButtonAction"/>
+			<Button text="func2" prefWidth="100" onAction="#func2ButtonAction"/>
+			<Button text="func3" prefWidth="100" onAction="#func3ButtonAction"/>
+			<Button text="func4" prefWidth="100" onAction="#func4ButtonAction"/>
+      </children>
+    </HBox>
+    <GridPane fx:id="mapGrid" prefWidth="360" prefHeight="360" >
+    </GridPane>
+  </children>
+</VBox>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:controller="TitleController" xmlns:fx="http://javafx.com/javafx"
+    alignment="CENTER">
+	<children>
+        <ImageView>
+            <Image url = "@../img/title.png" />
+        </ImageView>
+        <Label text="タイトルロゴがドーン" />
+		<Button onAction="#onStartAction"
+			text="START">
+		</Button>
+	</children>
+</VBox>
