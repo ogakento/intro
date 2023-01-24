@@ -2,6 +2,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
 import javafx.animation.AnimationTimer;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
 public class MoveChara {
     public static final int TYPE_DOWN = 0;
@@ -11,13 +13,16 @@ public class MoveChara {
 
     private final String[] directions = { "Down", "Left", "Right", "Up" };
     private final String[] animationNumbers = { "1", "2", "3" };
-    private final String pngPathPre = "png/cat";
+    private final String pngPathPre = "png/";
     private final String pngPathSuf = ".png";
 
     private int posX;
     private int posY;
-
+    private int KeyC = 0;
     private MapData mapData;
+    private MapGameController mgc;
+    MapGameController mc = new MapGameController();
+
 
     private Image[][] charaImages;
     private ImageView[] charaImageViews;
@@ -27,7 +32,6 @@ public class MoveChara {
 
     MoveChara(int startX, int startY, MapData mapData) {
         this.mapData = mapData;
-
         charaImages = new Image[4][3];
         charaImageViews = new ImageView[4];
         charaImageAnimations = new ImageAnimation[4];
@@ -36,11 +40,11 @@ public class MoveChara {
             charaImages[i] = new Image[3];
             for (int j = 0; j < 3; j++) {
                 charaImages[i][j] = new Image(
-                        pngPathPre + directions[i] + animationNumbers[j] + pngPathSuf);
+                pngPathPre + directions[i] + animationNumbers[j] + pngPathSuf);
             }
             charaImageViews[i] = new ImageView(charaImages[i][0]);
             charaImageAnimations[i] = new ImageAnimation(
-                    charaImageViews[i], charaImages[i]);
+            charaImageViews[i], charaImages[i]);
         }
 
         posX = startX;
@@ -67,6 +71,14 @@ public class MoveChara {
             return false;
         } else if (mapData.getMap(posX + dx, posY + dy) == MapData.TYPE_SPACE) {
             return true;
+        } else if (mapData.getMap(posX + dx, posY + dy) == MapData.TYPE_GOAL) {
+            if(getKeyCount()==3){
+                return true;
+            }else{
+                return false;
+            }
+        } else if (mapData.getMap(posX + dx, posY + dy) == MapData.TYPE_KEY) {
+            return true;
         }
         return false;
     }
@@ -76,11 +88,45 @@ public class MoveChara {
         if (isMovable(dx, dy)) {
             posX += dx;
             posY += dy;
-	    System.out.println("chara[X,Y]:" + posX + "," + posY);
+            System.out.println("chara[X,Y]:" + posX + "," + posY);
+            // もし動いた先がゴールならばGame Clearの文字をターミナルに出力する
+            if(mapData.getMap(posX,posY) == MapData.TYPE_GOAL){
+                try {
+                    System.out.println("\n"+"GameClear!"+"\n");
+                    StageDB.getMainStage().hide();
+                    StageDB.getMainSound().stop();
+                    StageDB.getGameClearStage().show();
+                    StageDB.getGameClearSound().play();
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());
+                }
+            //　もし動いた先が鍵ならばカウントを1増やし、持っている鍵の数をターミナルに出力する。
+            //  もし持っている鍵の数が3つならゴールに行けることを示唆する
+            }else if(mapData.getMap(posX,posY) == MapData.TYPE_KEY){
+                KeyCount(1);
+                int i = getKeyCount();
+                //  鍵を取ったあとの道はすべてTYPE_SPACEにすることで鍵の重複ゲットを防ぐ
+                mapData.setMap(posX,posY,MapData.TYPE_SPACE);
+                mapData.setImageViews();
+                System.out.println("\n"+"Key: "+i+"\n");
+                if(getKeyCount()==3){
+                    System.out.println("\n"+"You can go to goal"+"\n");
+                    int [] Goal = mapData.getGoal();
+                    mapData.setMap(Goal[0],Goal[1],MapData.TYPE_GOAL);
+                    mapData.setImageViews();
+                }
+            }
             return true;
         } else {
             return false;
         }
+    }
+    public void KeyCount(int k) {
+        KeyC = KeyC+k;
+        return;
+    }
+    public int getKeyCount(){
+        return KeyC;
     }
 
     // getter: direction of the cat

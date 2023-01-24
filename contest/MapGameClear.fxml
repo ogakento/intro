@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.input.* ?>
+<?import javafx.scene.image.*?>
+
+<VBox fx:controller="GameClearController" xmlns:fx="http://javafx.com/javafx"
+    alignment="CENTER">
+    <children>
+        <ImageView>
+            <Image url = "./png/gameclear.png" />
+        </ImageView>
+        <Label text="GameClear!" />
+		<Button onAction="#onGameClearAction"
+            text="迷路に戻る">
+		</Button>
+    </children>
+</VBox>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:controller="GameMainController" xmlns:fx="http://javafx.com/javafx"
+    alignment="CENTER">
+    <children>
+        <ImageView>
+            <Image url = "@../img/cat.png" />
+        </ImageView>
+        <Label text="猫" />
+        <HBox>
+            <children>
+                <Button onAction="#onGameOverAction"
+                    text="GAMEOVER">
+                </Button>
+                <Button onAction="#onTitleAction"
+                    text="TITLEに戻る">
+                </Button>
+                <Button onAction="#onSoundAction1"
+                    text="効果音１">
+                </Button>
+                <Button onAction="#onSoundAction2"
+                    text="効果音２">
+                </Button>
+            </children>
+        </HBox>
+    </children>
+</VBox>

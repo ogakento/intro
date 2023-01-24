@@ -8,7 +8,7 @@ public class MapGame extends Application {
   Stage stage;
 
   @Override
-  public void start(Stage primaryStage) throws Exception {
+  public void start(Stage primaryStage) {
     stage = primaryStage;
     stage.hide();
     StageDB.setMainClass(getClass());

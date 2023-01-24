@@ -5,12 +5,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.input.* ?>
+<?import javafx.scene.image.*?>
 
-<VBox fx:controller="GameOverController" xmlns:fx="http://javafx.com/fxml">
-  <children>
-	        <Label text="GameOver..." />
-		<Button onAction="#onGameOverAction" text="迷路に戻る">
+<VBox fx:controller="GameOverController" xmlns:fx="http://javafx.com/javafx/"
+    alignment="CENTER">
+	<children>
+        <ImageView>
+            <Image url = "./png/gameover.png" />
+        </ImageView>
+        <Label text="GameOver..." />
+		<Button onAction="#onGameOverAction"
+			text="迷路に戻る">
 		</Button>
-
-  </children>
+	</children>
 </VBox>

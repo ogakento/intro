@@ -13,6 +13,7 @@ public class GameOverController {
 			StageDB.getMainSound().stop();
 			StageDB.getMainStage().show();
 			StageDB.getMainSound().play();
+			StageDB.getGameOverSound().stop();
 		} catch (Exception ex) {
 			System.out.println(ex.getMessage());
 		}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox fx:controller="GameOverController" xmlns:fx="http://javafx.com/javafx/"
+    alignment="CENTER">
+	<children>
+        <ImageView>
+            <Image url = "@../img/gameover.png" />
+        </ImageView>
+        <Label text="やーらーれーたー" />
+		<Button mnemonicParsing="false" onAction="#onTitleAction"
+			text="TITLEに戻る">
+		</Button>
+	</children>
+</VBox>

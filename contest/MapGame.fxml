@@ -5,12 +5,14 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.input.* ?>
+<?import javafx.*?>
+<?import java.net.*?>
 
 <VBox fx:controller="MapGameController" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/11" onKeyPressed="#keyAction">
   <padding>
     <Insets top="10" right="10" bottom="10" left="10"/>
   </padding>
-  
+
   <children>
     <HBox prefHeight="50">
       <children>
@@ -22,5 +24,6 @@
     </HBox>
     <GridPane fx:id="mapGrid" prefWidth="360" prefHeight="360" >
     </GridPane>
+    <Label fx:id="setTimerLabel" text="null" />
   </children>
 </VBox>

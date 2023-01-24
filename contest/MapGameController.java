@@ -1,3 +1,5 @@
+
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -13,11 +15,23 @@ import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.fxml.FXML;
 
+import javafx.fxml.*;
+import javafx.scene.*;
+
+import java.io.IOException;
+import java.io.File;
+
+import javafx.animation.*;
+import javafx.util.Duration;
+
 public class MapGameController implements Initializable {
     public MapData mapData;
     public MoveChara chara;
     public GridPane mapGrid;
     public ImageView[] mapImageViews;
+    public Label setTimerLabel;
+    public static Timeline timer;
+    public Timeline initTimer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -31,12 +45,27 @@ public class MapGameController implements Initializable {
             }
         }
         drawMap(chara, mapData);
+
+        initTimer = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>(){
+
+            @Override
+            @FXML
+            public void handle(ActionEvent event) {
+                setTimerLabel.setText(timelabel.getText());
+            }
+        }));
+        initTimer.setCycleCount(Timeline.INDEFINITE);
+        initTimer.play();
+
+
+
     }
 
     // Draw the map
     public void drawMap(MoveChara c, MapData m) {
         int cx = c.getPosX();
         int cy = c.getPosY();
+
         mapGrid.getChildren().clear();
         for (int y = 0; y < mapData.getHeight(); y ++) {
             for (int x = 0; x < mapData.getWidth(); x ++) {
@@ -44,6 +73,8 @@ public class MapGameController implements Initializable {
                 if (x == cx && y == cy) {
                     mapGrid.add(c.getCharaImageView(), x, y);
                 } else {
+                    //KEYを取ったあとと前で迷路画像が変わるため新たに呼び出している
+                    mapImageViews[index] = mapData.getImageView(x, y);
                     mapGrid.add(mapImageViews[index], x, y);
                 }
             }
@@ -51,16 +82,17 @@ public class MapGameController implements Initializable {
     }
 
     // Get users' key actions
+    //キー配列をAWSDに変更した
     public void keyAction(KeyEvent event) {
         KeyCode key = event.getCode();
         System.out.println("keycode:" + key);
-        if (key == KeyCode.H) {
+        if (key == KeyCode.A) {
             leftButtonAction();
-        } else if (key == KeyCode.J) {
+        } else if (key == KeyCode.S) {
             downButtonAction();
-        } else if (key == KeyCode.K) {
+        } else if (key == KeyCode.W) {
             upButtonAction();
-        } else if (key == KeyCode.L) {
+        } else if (key == KeyCode.D) {
             rightButtonAction();
         }
     }
@@ -104,6 +136,8 @@ public class MapGameController implements Initializable {
             StageDB.getMainStage().hide();
             StageDB.getMainSound().stop();
             StageDB.getGameOverStage().show();
+            StageDB.getGameOverSound().play();
+            timerStop();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -111,7 +145,29 @@ public class MapGameController implements Initializable {
 
     @FXML
     public void func2ButtonAction(ActionEvent event) {
-        System.out.println("func2: Nothing to do");
+        // func2ボタンをクリックするとinitializeメソッドと同じような動きをし、迷路を作り変える
+        try{
+            System.out.println("func2");
+            StageDB.getMainStage().hide();
+            StageDB.getMainSound().stop();
+            mapData = new MapData(21, 15);
+            chara = new MoveChara(1, 1, mapData);
+            mapImageViews = new ImageView[mapData.getHeight() * mapData.getWidth()];
+            for (int y = 0; y < mapData.getHeight(); y ++) {
+                for (int x = 0; x < mapData.getWidth(); x ++) {
+                    int index = y * mapData.getWidth() + x;
+                    mapImageViews[index] = mapData.getImageView(x, y);
+                }
+            }
+            drawMap(chara, mapData);
+
+            timerReset();
+
+            StageDB.getMainStage().show();
+            StageDB.getMainSound().play();
+        }catch(Exception exc){
+            System.out.println(exc.getMessage());
+        }
     }
 
     @FXML
@@ -128,5 +184,55 @@ public class MapGameController implements Initializable {
     public void printAction(String actionString) {
         System.out.println("Action: " + actionString);
     }
+
+
+    @FXML static final Label timelabel = new Label("0");
+    public static boolean stop = false;
+
+
+    //新しくタイマーを作成しplayさせる、1000ミリ秒おきにtimelabelの値を+1する
+    public static void timerStart() {
+
+        stop = false;
+        timerReset();
+
+        timer = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>(){
+
+            @Override
+            @FXML
+            public void handle(ActionEvent event) {
+                if (stop == true) {
+                    timer.stop();
+                } else if(stop == false) {
+                    timelabel.setText(String.valueOf(Integer.parseInt(timelabel.getText()) + 1));
+                    System.out.println(timelabel.getText());
+                }
+
+            }
+        }));
+        timer.setCycleCount(Timeline.INDEFINITE);
+        timer.play();
+    }
+
+    //タイマーをリセットする、ゲームオーバーやゲームクリアなどでタイマーが止まっていた場合には新しいタイマーを作成する
+    public static void timerReset() {
+        if(stop == true) {
+            timerStart();
+        } else {
+            timelabel.setText("0");
+        }
+    }
+
+    //ゲームオーバーやゲームクリア時にタイマーを止める
+    public static void timerStop() {
+        stop = true;
+        System.out.println("Timer was stopped!");
+    }
+
+    public static void timerPlay() {
+        timer.play();
+    }
+
+
 
 }
