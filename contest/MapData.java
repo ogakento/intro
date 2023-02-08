@@ -39,6 +39,8 @@ public class MapData {
         //getGoalを呼び出してゴール座標を配列Goalに入力し、setMapでゴール画像を適応させる上ゴールの性質をもたせる
         int [] Goal = getGoal();
         setMap(Goal[0],Goal[1],MapData.TYPE_LOCK);
+
+        //getKeyを呼び出してそれぞれ設定した座標にsetMapで鍵の画像を適応させる。
         int[][] Key = getKey();
         for(int i = 0; i < 3; i++) {
             setMap(Key[i][0], Key[i][1], MapData.TYPE_KEY);
@@ -127,23 +129,43 @@ public class MapData {
         return Goal;
     }
 
+    //マップ上のSPACEをランダムで3つKEYに置き換える
+    //この際、マップ上のキャラの初期座標(1,1)とかぶらないようにする
     public int[][] getKey() {
         Random rand = new Random();
 
+        //二次元配列key[a][b]を設定する
+        //[a] = 何番目の鍵か
+        //[b](b == 0):配置した鍵のX座標,(b == 1):Y座標
         int[][] key = new int[3][2];
         int keyCount = 0;
         int randKeyX = 0;
         int randKeyY = 0;
 
-        while(keyCount != 3) {
-            randKeyX = rand.nextInt(width) + 1;
-            randKeyY = rand.nextInt(height) + 1;
+        while(keyCount < 3) {
+            randKeyX = rand.nextInt(width);
+            randKeyY = rand.nextInt(height);
 
             if (getMap(randKeyX, randKeyY) == MapData.TYPE_SPACE) {
-                key[keyCount][0] = randKeyX;
-                key[keyCount][1] = randKeyY;
+                if(randKeyX != 1 && randKeyY != 1) {
+                    key[keyCount][0] = randKeyX;
+                    key[keyCount][1] = randKeyY;
 
-                keyCount += 1;
+                    if(keyCount == 1){
+                      if(key[keyCount][0] == key[keyCount-1][0] || key[keyCount][1] == key[keyCount-1][1]){
+                        continue;
+                      }
+                    }else if(keyCount == 2){
+                      if(key[keyCount][0] == key[keyCount-1][0] || key[keyCount][1] == key[keyCount-1][1]
+                         || key[keyCount][0] == key[keyCount-2][0] || key[keyCount][1] == key[keyCount-2][1]){
+                        continue;
+                      }
+                    }
+
+                    System.out.println("Key placed:" + key[keyCount][0] + "," + key[keyCount][1]);
+
+                    keyCount += 1;
+                }
             }
         }
 

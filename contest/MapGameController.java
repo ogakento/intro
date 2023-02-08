@@ -46,6 +46,7 @@ public class MapGameController implements Initializable {
         }
         drawMap(chara, mapData);
 
+        //タイマーの更新を100ミリ秒おきに読み取るためのiniTimerを作成、timelabelの値をsetTimerLabelに代入する
         initTimer = new Timeline(new KeyFrame(Duration.millis(100), new EventHandler<ActionEvent>(){
 
             @Override
@@ -191,10 +192,12 @@ public class MapGameController implements Initializable {
 
 
     //新しくタイマーを作成しplayさせる、1000ミリ秒おきにtimelabelの値を+1する
+    //stop == true の場合はタイマーを止める
     public static void timerStart() {
 
         stop = false;
         timerReset();
+        System.out.println("Timer started!");
 
         timer = new Timeline(new KeyFrame(Duration.millis(1000), new EventHandler<ActionEvent>(){
 
@@ -205,7 +208,7 @@ public class MapGameController implements Initializable {
                     timer.stop();
                 } else if(stop == false) {
                     timelabel.setText(String.valueOf(Integer.parseInt(timelabel.getText()) + 1));
-                    System.out.println(timelabel.getText());
+                    System.out.println("time:" + timelabel.getText());
                 }
 
             }
@@ -220,19 +223,17 @@ public class MapGameController implements Initializable {
             timerStart();
         } else {
             timelabel.setText("0");
+            stop = false;
         }
     }
 
-    //ゲームオーバーやゲームクリア時にタイマーを止める
+    //ゲームオーバーやゲームクリア時にタイマーを止めるため、stop = trueにする
+    //すでにstop == trueである場合は何もしない
     public static void timerStop() {
-        stop = true;
-        System.out.println("Timer was stopped!");
+        if(stop == false) {
+            stop = true;
+            System.out.println("Timer stopped!");
+        }
     }
-
-    public static void timerPlay() {
-        timer.play();
-    }
-
-
 
 }

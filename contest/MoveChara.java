@@ -90,6 +90,7 @@ public class MoveChara {
             posY += dy;
             System.out.println("chara[X,Y]:" + posX + "," + posY);
             // もし動いた先がゴールならばGame Clearの文字をターミナルに出力する
+            // もしゴールしたときにstop == falseならばタイマーの停止処理を実行する
             if(mapData.getMap(posX,posY) == MapData.TYPE_GOAL){
                 try {
                     System.out.println("\n"+"GameClear!"+"\n");
@@ -97,6 +98,9 @@ public class MoveChara {
                     StageDB.getMainSound().stop();
                     StageDB.getGameClearStage().show();
                     StageDB.getGameClearSound().play();
+                    if(MapGameController.stop == false) {
+                        MapGameController.timerStop();
+                    }
                 } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }

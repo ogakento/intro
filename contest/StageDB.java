@@ -119,9 +119,6 @@ class StageDB {
                 FXMLLoader loader = new FXMLLoader(mainClass.getResource("MapGameClear.fxml"));
                 VBox root = loader.load();
                 Scene scene = new Scene(root);
-
-                MapGameController.timerStop();
-
                 gameClearStage = new Stage();
                 gameClearStage.setScene(scene);
             } catch (IOException ioe) {
