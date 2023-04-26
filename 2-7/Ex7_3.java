@@ -30,6 +30,17 @@ class MyDate {
         this.month = m;
         this.day = d;
     }
+
+    MyDate(String mdate) {
+        this.year = Integer.parseInt(mdate.substring(0, 4));
+        this.month = Integer.parseInt(mdate.substring(5, 7));
+        this.day = Integer.parseInt(mdate.substring(8, 10));
+    }
+
+    @Override
+    public String toString() {
+        return year + "/" + month + "/" + day;
+    }
 }
 
 class Person {
@@ -69,11 +80,7 @@ class Person {
         str = "NAME: "
                 + name
                 + " (Date of Birth: "
-                + this.birthday.year
-                + "/"
-                + this.birthday.month
-                + "/"
-                + this.birthday.day
+                + birthday
                 + ")\n"
                 + "  Number of friends = "
                 + this.friends.length
@@ -98,8 +105,8 @@ class Ex7_3 {
     public static void main(String args[]) {
         // create objects
         Person person1 = new Person("Taro Tokyo", 1985, 9, 20, "080-1234-5678");
-        Person person2 = new Person(new MyName("Jiro", "Osaka"), 1981, 6, 18, "090-8765-4321");
-        Person person3 = new Person(new MyName("Saburo Aichi"), new MyDate(1981, 12, 23), "090-3333-5555");
+        Person person2 = new Person("Jiro Osaka", new MyDate(1981, 6, 18), "090-8765-4321");
+        Person person3 = new Person(new MyName("Saburo Aichi"), 1981, 12, 23, "090-3333-5555");
         Person person4 = new Person(new MyName("Shiro Gifu"), new MyDate(1974, 2, 3), "090-2222-1111");
 
         // register friends of each person
